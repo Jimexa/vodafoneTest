@@ -26,6 +26,6 @@ h6 {
 
 .myButton {
   margin-top: 1vh;
-  width: 15vw;
-  margin-left: 34%;
+  width: 95px;
+  align-self: center;
 }
