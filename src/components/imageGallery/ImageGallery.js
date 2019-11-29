@@ -10,12 +10,14 @@ class ImageGallery extends Component {
           <Row>
             <Col />
             <Col>
-              <img
-                style={{ height: "50vh" }}
-                className={"imag"}
-                src={this.props.images[0].img}
-                alt={"waveImage"}
-              />
+              <Row>
+                <img
+                  style={{ height: "50vh" }}
+                  className={"imag"}
+                  src={this.props.images[0].img}
+                  alt={"waveImage"}
+                />
+              </Row>
             </Col>
             <Col>
               <Row>
