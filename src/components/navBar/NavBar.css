@@ -1,0 +1,12 @@
+.navRow {
+  text-align: center;
+  width: 100vw;
+  height: 10vh;
+  background-color: darkgray;
+}
+
+.navColumn {
+  justify-content: center;
+  background-color: darkseagreen;
+  line-height: 10vh;
+}
