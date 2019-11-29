@@ -5,29 +5,54 @@ import "./ImageGallery.css";
 class ImageGallery extends Component {
   render() {
     return (
-      <Container className={"contain"} fluid={true}>
-        <Row>
-          <Col>
-            <img className={"imag"} src={this.props.images[0].img} />
-          </Col>
-          <Col>
-            <Row>
-              <img src={this.props.images[1].img} />
-            </Row>
-            <Row>
-              <img src={this.props.images[2].img} />
-            </Row>
-          </Col>
-          <Col>
-            <Row>
-              <img src={this.props.images[3].img} />
-            </Row>
-            <Row>
-              <img src={this.props.images[4].img} />
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+      <React.Fragment>
+        <Container className={"contain"} fluid={true}>
+          <Row>
+            <Col />
+            <Col>
+              <img
+                style={{ height: "50vh" }}
+                className={"imag"}
+                src={this.props.images[0].img}
+                alt={"waveImage"}
+              />
+            </Col>
+            <Col>
+              <Row>
+                <img
+                  alt={"waveImage"}
+                  className={"imag"}
+                  src={this.props.images[1].img}
+                />
+              </Row>
+              <Row>
+                <img
+                  alt={"waveImage"}
+                  className={"imag"}
+                  src={this.props.images[2].img}
+                />
+              </Row>
+            </Col>
+            <Col>
+              <Row>
+                <img
+                  alt={"waveImage"}
+                  className={"imag"}
+                  src={this.props.images[3].img}
+                />
+              </Row>
+              <Row>
+                <img
+                  alt={"waveImage"}
+                  className={"imag"}
+                  src={this.props.images[4].img}
+                />
+              </Row>
+            </Col>
+            <Col />
+          </Row>
+        </Container>
+      </React.Fragment>
     );
   }
 }

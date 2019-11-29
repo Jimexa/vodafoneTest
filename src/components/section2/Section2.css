@@ -1,0 +1,31 @@
+h6 {
+  color: blue;
+}
+
+.bar1 {
+  color: violet;
+  background-color: violet;
+}
+
+.bg-awesome {
+  background-color: purple;
+}
+.block {
+  display: inline-flex;
+  width: inherit;
+}
+
+.progressText {
+  display: inline-block;
+  width: 50%;
+}
+
+.myInput {
+  margin-top: 1vh;
+}
+
+.myButton {
+  margin-top: 1vh;
+  width: 15vw;
+  margin-left: 34%;
+}

@@ -1,8 +1,12 @@
 .contain {
-  background-color: darkslateblue;
   height: 50vh;
 }
 
 .imag {
   scale: 0.2;
+  flex-shrink: inherit;
+  image-rendering: inherit;
+  height: 25vh;
+  width: 100%;
+  padding: 2%;
 }

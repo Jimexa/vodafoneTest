@@ -81,7 +81,7 @@ const Example = props => {
       <style>
         {`.custom-tag {
               max-width: 100%;
-              height: 35vh;
+              height: 25vh;
               background: black;
             }`}
       </style>
