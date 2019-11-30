@@ -1,10 +1,25 @@
 import React, { Component } from "react";
-import { Progress, Container, Col, Row, Input, Button } from "reactstrap";
-import { parsePhoneNumberFromString } from "libphonenumber-js";
+import {
+  Progress,
+  Container,
+  Col,
+  Row,
+  Input,
+  Button,
+  FormGroup,
+  FormFeedback
+} from "reactstrap";
 import "./Section2.css";
 
 class Section2 extends Component {
-  state = { phone: "", email: "", password: "" };
+  state = {
+    phone: "",
+    email: "",
+    password: "",
+    validPass: false,
+    validPhone: false,
+    validEmail: false
+  };
 
   setPhone = value => {
     this.setState({ phone: value });
@@ -24,9 +39,6 @@ class Section2 extends Component {
   };
 
   validatePhone = phoneNum => {
-    // const phone = parsePhoneNumberFromString(phoneNum);
-    // let bool = phone.isValid();
-    // console.log(bool);
     let length = phoneNum.length;
     if (length !== 10 && length !== 13) {
       return false;
@@ -35,7 +47,11 @@ class Section2 extends Component {
       (phoneNum.charAt(0) === "2" || phoneNum.charAt(0) === "6")
     ) {
       return true;
-    } else if (length === 13 && phoneNum.charAt(0) === "+") {
+    } else if (
+      length === 13 &&
+      phoneNum.charAt(0) === "+" &&
+      (phoneNum.charAt(3) === "2" || phoneNum.charAt(3) === "6")
+    ) {
       return true;
     }
     return false;
@@ -51,7 +67,7 @@ class Section2 extends Component {
       return false;
     }
 
-    if (/^[a-zA-Z0-9]*$/.test(password) == false) {
+    if (/^[a-zA-Z0-9]*$/.test(password) === false) {
       symbol = true;
     }
 
@@ -78,6 +94,7 @@ class Section2 extends Component {
     return (
       <Container fluid={true}>
         <Row>
+          <Col xs="1" />
           <Col>
             <h6>{this.props.data.title}</h6>
             <h4>{this.props.data.graphText}</h4>
@@ -124,37 +141,77 @@ class Section2 extends Component {
               We work with ecosystem leaders, corporations and startups
               worldwide. How can we help you?
             </p>
-            <Input
-              type="tel"
-              onChange={e => {
-                this.setPhone(`${e.target.value}`);
-              }}
-              className="myInput"
-              placeholder="Your Phone"
-            />
-            <Input
-              type="email"
-              onChange={e => {
-                this.setEmail(`${e.target.value}`);
-              }}
-              className="myInput"
-              placeholder="Your Email"
-            />
-            <Input
-              valid
-              type="password"
-              onChange={e => {
-                this.setPassword(`${e.target.value}`);
-              }}
-              className="myInput"
-              placeholder="Password"
-            />
+            <FormGroup>
+              <Input
+                invalid={
+                  this.state.phone === "" || this.state.validPhone
+                    ? false
+                    : true
+                }
+                valid={this.state.validPhone}
+                type="tel"
+                onChange={e => {
+                  this.setPhone(`${e.target.value}`);
+                }}
+                className="myInput"
+                placeholder="Your Phone"
+              />
+              <FormFeedback invalid>
+                The number should be 10 digits starting with 2 or 6 or 13
+                starting with +30
+              </FormFeedback>
+            </FormGroup>
+            <FormGroup>
+              <Input
+                invalid={
+                  this.state.email === "" || this.state.validEmail
+                    ? false
+                    : true
+                }
+                valid={this.state.validEmail}
+                type="email"
+                onChange={e => {
+                  this.setEmail(`${e.target.value}`);
+                }}
+                className="myInput"
+                placeholder="Your Email"
+              />
+              <FormFeedback invalid>
+                Your input is not in email form
+              </FormFeedback>
+            </FormGroup>
+            <FormGroup>
+              <Input
+                invalid={
+                  this.state.password === "" || this.state.validPass
+                    ? false
+                    : true
+                }
+                valid={this.state.validPass}
+                type="password"
+                onChange={e => {
+                  this.setPassword(`${e.target.value}`);
+                }}
+                className="myInput"
+                placeholder="Password"
+              />
+              <FormFeedback invalid>
+                Password must be more than 8 characters contain at least 1
+                capital, lower letter, a number and a symbol
+              </FormFeedback>
+            </FormGroup>
             <div className="text-center">
               <Button
                 onClick={() => {
-                  alert(this.validateEmail(this.state.email));
-                  alert(this.validatePhone("2341091704"));
-                  alert(this.validatePassword("#pA4aaaaaaa___aaaa$"));
+                  this.setState({
+                    validEmail: this.validateEmail(this.state.email)
+                  });
+                  this.setState({
+                    validPhone: this.validatePhone("2341091704")
+                  });
+                  this.setState({
+                    validPass: this.validatePassword(this.state.password)
+                  });
                 }}
                 className="myButton"
                 color="primary"
@@ -163,6 +220,7 @@ class Section2 extends Component {
               </Button>
             </div>
           </Col>
+          <Col xs="1" />
         </Row>
       </Container>
     );
